@@ -1,10 +1,10 @@
 import random
 
 board = [[" * ", " * ", " * "],
-                [" * ", " * ", " * "],
-                [" * ", " * ", " * "]]
+         [" * ", " * ", " * "],
+         [" * ", " * ", " * "]]
 
-#pos of the players in the grid
+#pos of the players on the board
 def listindex(listofelements, element):
 
     final = []
@@ -179,17 +179,19 @@ print()
 #Game loop
 while True:
     
+    # Player 1's turn
     if playerselect in botlist:
         print("Your turn:")
     else:
         print("Player 1's turn:")
         
-    indexlist = listindex(board, element)
-    playercompare = playerindex(indexlist)
-    board[playercompare[0]][playercompare[1]] = userinput
+    indexlist = listindex(board, element) # all available spaces
+    playercompare = playerindex(indexlist) # player 1's move
+    board[playercompare[0]][playercompare[1]] = userinput # add the players move to the board
     printboard(board)
     checkwin = checkwinfunction(board)
     
+    # Check if anyone has won
     if checkwin or checkwin == "Tie":
         if checkwin == "Tie":
             print("Game Over. It's a Tie!")
@@ -203,18 +205,20 @@ while True:
         
     indexlist = listindex(board, element)
     
+    # player 2's turn
     if playerselect in botlist:
         print("Bot's turn:")
-        botcompare = botindex(indexlist)
+        botcompare = botindex(indexlist) # bot's move
         board[botcompare[0]][botcompare[1]] = player2
     else:
         print("Player 2's turn:")
-        playercompare = playerindex(indexlist)
+        playercompare = playerindex(indexlist) # player 2's move
         board[playercompare[0]][playercompare[1]] = player2
         
     printboard(board)
     checkwin = checkwinfunction(board)
     
+    #check is anyone has won
     if checkwin or checkwin == "Tie":
         if checkwin == "Tie":
             print("Game Over. It's a Tie!")
